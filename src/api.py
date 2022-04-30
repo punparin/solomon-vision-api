@@ -4,6 +4,7 @@ from flask import Flask, request, Response
 from Visioner import Visioner
 from Logger import Logger
 from SolomonVisionError import SolomonVisionError
+from CardInfo import CardInfo
 
 
 app = Flask(__name__)
@@ -13,22 +14,20 @@ visioner = Visioner(logger)
 
 @app.route('/search-card', methods=['POST'])
 def cards():
-    file = request.files['image']
-    img_stream = Image.open(file.stream)
+    img = request.data
 
     try:
-        name = visioner.find_name(img_stream)
+        card_info = visioner.find_name(img)
 
-        if name is None:
-            response = Response(response=json.dumps({"message": "Name not found"}),
-                        status=404,
-                        mimetype="application/json"
-                        )
-        else:
-            response = Response(response=json.dumps({"name": name}),
-                        status=201,
-                        mimetype="application/json"
-                        )
+        body = {
+            "en_name": card_info.en_name,
+            "jp_name": card_info.jp_name,
+            "set_code": card_info.set_code
+        }
+        response = Response(response=json.dumps(body),
+                    status=201,
+                    mimetype="application/json"
+                    )
     except SolomonVisionError as err:
         response = Response(response=json.dumps({"message": str(err)}),
                     status=400,
