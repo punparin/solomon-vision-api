@@ -4,11 +4,17 @@ is an API retrieving Yugioh card's name from image using OCR
 
 ## Usage
 
-`curl --request POST 'http://localhost:8080/search-card' --form 'image=@"<IMG_PATH>"'`
+```sh
+curl --request POST 'http://localhost:8080/search-card' \
+--header 'Content-Type: image/jpeg' \
+--data-binary <IMAGE_FILE>
+```
 
 ```json
 {
-  "name": "Blue-Eyes Alternative White Dragon"
+  "en_name": "Formula Synchron",
+  "jp_name": "フォーミュラ・シンクロン",
+  "set_code": "HC01-JP02"
 }
 ```
 
