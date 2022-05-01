@@ -22,6 +22,7 @@ def cards():
         body = {
             "en_name": card_info.en_name,
             "jp_name": card_info.jp_name,
+            "type": card_info.type,
             "set_code": card_info.set_code,
             "img_url": card_info.img_url,
         }
