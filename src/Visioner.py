@@ -63,11 +63,13 @@ class Visioner:
             if card is not None:
                 en_name = card["_source"]["name"]
                 jp_name = card["_source"]["jp_name"]
+                img_url = "https://storage.googleapis.com/ygoprodeck.com/pics_small/" + str(card["_source"]["id"]) + ".jpg"
                 score = self.jaccard_similarity(text, card["_source"]["jp_name"])
 
                 if score >= self.score_threshold:
                     card_info.en_name = en_name
                     card_info.jp_name = jp_name
+                    card_info.img_url = img_url
                     break
 
         for text in texts:

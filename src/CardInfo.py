@@ -3,3 +3,4 @@ class CardInfo:
         self.set_code = None
         self.en_name = None
         self.jp_name = None
+        self.img_url = None

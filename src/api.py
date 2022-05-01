@@ -22,7 +22,8 @@ def cards():
         body = {
             "en_name": card_info.en_name,
             "jp_name": card_info.jp_name,
-            "set_code": card_info.set_code
+            "set_code": card_info.set_code,
+            "img_url": card_info.img_url,
         }
         response = Response(response=json.dumps(body),
                     status=201,
