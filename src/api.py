@@ -41,7 +41,7 @@ def card():
 @app.route('/search-cards', methods=['POST'])
 def cards():
     args = request.args
-    similarity_threshold = args.get("similarity_threshold")
+    similarity_threshold = float(args.get("similarity_threshold"))
     img = request.data
 
     try:

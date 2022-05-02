@@ -96,7 +96,7 @@ class Visioner:
             possible_cards = self.find_fuzzy_cards_from_name(text)
 
             for card in possible_cards:
-                card = self.get_card_from_text(text, card, self.score_threshold)
+                card = self.get_card_from_text(text, card, similarity_threshold)
 
                 if card is not None:
                     card_info = card
